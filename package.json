@@ -1,6 +1,19 @@
 {
   "name": "ivu-extends",
-  "version": "0.1.0",
+  "version": "1.0.0",
+  "description": "基于 view-design 扩展的组件库",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OlderK/ivu-extends.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OlderK/ivu-extends/issues"
+  },
+  "homepage": "https://github.com/OlderK/ivu-extends#readme",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -39,5 +52,15 @@
     "> 1%",
     "last 2 versions",
     "not dead"
-  ]
+  ],
+  "prettier": {
+    "tabWidth": 2,
+    "printWidth": 100,
+    "arrowParens": "avoid",
+    "singleQuote": false,
+    "semi": false,
+    "trailingComma": "none",
+    "wrapAttributes": true,
+    "sortAttributes": true
+  }
 }

@@ -1,0 +1,6 @@
+.*
+.vscode
+public
+node_modules
+vue.config.js
+
