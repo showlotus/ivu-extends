@@ -3,4 +3,6 @@
 public
 node_modules
 vue.config.js
+src/main.js
+src/App.vue
 
