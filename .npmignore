@@ -2,7 +2,10 @@
 .vscode
 public
 node_modules
+examples
 vue.config.js
 src/main.js
 src/App.vue
+src/test
+src/views
 

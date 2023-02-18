@@ -5,7 +5,7 @@
 ## 安装
 
 ```
-npm install
+npm install ivu-extends
 ```
 
 ## 组件介绍

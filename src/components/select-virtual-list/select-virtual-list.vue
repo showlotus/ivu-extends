@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  name: "select-virtual-list",
+  name: 'select-virtual-list',
   data() {
     return {}
   }

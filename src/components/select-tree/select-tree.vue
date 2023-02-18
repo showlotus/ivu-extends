@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  name: "select-tree",
+  name: 'select-tree',
   data() {
     return {}
   }
