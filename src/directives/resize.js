@@ -1,4 +1,4 @@
-import { debounce, noop } from '@/utils/assets'
+import { noop, throttle } from '@/utils/assets'
 
 export default {
   name: 'resize',
@@ -7,7 +7,7 @@ export default {
     let immediate = binding.modifiers.immediate || false
     wait = Number.isNaN(wait) ? undefined : wait
     const callback = binding.value || noop
-    const handler = debounce(entries => {
+    const handler = throttle(entries => {
       const rect = entries[0].contentRect
       // 是否立即触发
       if (!immediate) {

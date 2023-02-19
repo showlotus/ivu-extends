@@ -36,7 +36,7 @@ export function getChainedKey(obj, keys) {
 }
 
 // 节流
-export function throttle(fn, wait) {
+export function throttle(fn, wait = 500) {
   let timer = null
   let isFirstTime = true // 是否是第一次触发
 
@@ -62,7 +62,7 @@ export function throttle(fn, wait) {
 }
 
 // 防抖
-export function debounce(fn, wait) {
+export function debounce(fn, wait = 500) {
   let timer = null
   return function (...args) {
     const that = this

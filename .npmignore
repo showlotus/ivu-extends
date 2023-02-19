@@ -8,4 +8,6 @@ src/main.js
 src/App.vue
 src/test
 src/views
+src/styles
+build
 
