@@ -3,7 +3,7 @@ import { Table as iTable } from 'view-design'
 import { getChainedKey } from '@/utils/assets'
 
 export default {
-  name: 'IveTableColumnKeyChain',
+  name: 'TableColumnKeyChain',
   functional: true,
   render: function (h, context) {
     const multiplyColumns = context.props.columns.filter(col => col.key.indexOf('.') > -1)

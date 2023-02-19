@@ -34,14 +34,14 @@ function isEmptyVal(val) {
   return val === '' || val == null
 }
 
-const name = 'ive-select-union'
+const name = 'ivu-select-union'
 
 export default {
-  name: 'IveSelectUnion',
+  name: 'SelectUnion',
   components: { Select },
   props: {
     group: {
-      type: [String, Number],
+      type: String,
       default: 'default'
     }
   },
@@ -88,6 +88,7 @@ export default {
   },
   render(h) {
     const filterSelectedValue = vnode => {
+      if (!vnode.tag) return false
       const val = getOptionVal(vnode)
       return !this.groupValueList.has(val) || val === this.currVal
     }

@@ -17,10 +17,10 @@
 <script>
 import { InputNumber } from 'view-design'
 
-const prefixCls = 'ive-input-number-unit'
+const prefixCls = 'ivu-input-number-unit'
 
 export default {
-  name: 'IveInputNumberUnit',
+  name: 'InputNumberUnit',
   components: { InputNumber },
   props: {
     value: {

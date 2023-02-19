@@ -2,7 +2,7 @@
 import { Form as iForm } from 'view-design'
 
 export default {
-  name: 'IveFormLabelSuffix',
+  name: 'FormLabelSuffix',
   functional: true,
   props: {
     labelColon: {

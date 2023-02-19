@@ -16,40 +16,42 @@ import IvuExtends from 'ivu-extends'
 Vue.use(IvuExtends)
 
 // 或者
-import { IveFormLabelSuffix, IveInputNumberUnit } from 'ivu-extends'
+import { FormLabelSuffix, InputNumberUnit } from 'ivu-extends'
 
-Vue.component(IveFormLabelSuffix.name, IveFormLabelSuffix)
-Vue.component(IveInputNumberUnit.name, IveInputNumberUnit)
+Vue.component(FormLabelSuffix.name, FormLabelSuffix)
+Vue.component(InputNumberUnit.name, InputNumberUnit)
 /* 或写为
- * Vue.use(IveFormLabelSuffix)
- * Vue.use(IveInputNumberUnit)
+ * Vue.use(FormLabelSuffix)
+ * Vue.use(InputNumberUnit)
  */
 ```
 
 ## 组件
 
-### IveFormLabelSuffix
+### FormLabelSuffix
 
 对原属性 _label-colon_ 进行扩展，可定制 _label_ 后缀。
 
+> 使用场景：统一为项目中的表单标签都添加中文冒号 `：` 后缀。
+
 ```html
-<IveFormLabelSuffix :label-width="160" label-colon="：">
+<FormLabelSuffix :label-width="160" label-colon="：">
   <FormItem label="姓名"><Input></Input></FormItem>
   <FormItem label="年龄"><Input></Input></FormItem>
-</IveFormLabelSuffix>
+</FormLabelSuffix>
 ```
 
-如果不想更换 Form 组件名（`Form` => `IveFormLabelSuffix`），可以全局/局部替换 ivu-form。
+如果不想更换 Form 组件名（`Form` => `FormLabelSuffix`），可以全局/局部替换 ivu-form。
 
 ```js
 // 在 main.js 中全局替换
-Vue.component('Form', IveFormLabelSuffix)
+Vue.component('Form', FormLabelSuffix)
 
 // 在 Form 使用处，局部替换
-import IveFormLabelSuffix from 'ivu-extends'
+import FormLabelSuffix from 'ivu-extends'
 
 export default {
-  components: { Form: IveFormLabelSuffix }
+  components: { Form: FormLabelSuffix }
   /* ... */
 }
 ```
@@ -63,13 +65,138 @@ export default {
 </Form>
 ```
 
-### IveInputNumberUnit
+### InputNumberUnit
 
-### IveSelectUnion
+带单位的数字输入框，在 InputNumber 的基础上进行扩展，新增了两个属性：`unit` 和 `unit-placement`，一个插槽：`unit`。
 
-### IveTableColumnKeyChain
+> 使用场景：原生 InputNumber 添加单位后，单位算作输入框内容的一部分，导致还能选中删除，不优雅。
 
-### IveTooltipText
+#### 使用
+
+```html
+<InputNumberUnit
+  :max="100"
+  :min="-10"
+  size="small"
+  unit="$"
+  unit-placement="start"
+  v-model="value"
+/>
+```
+
+使用插槽
+
+```html
+<InputNumberUnit :max="100" :min="0" :step="1" unit-placement="end" size="large" v-model="value">
+  <span slot="unit" style="color: red; font-weight: bold">%</span>
+</InputNumberUnit>
+```
+
+#### props
+
+|      属性      |                                             说明                                              |
+| :------------: | :-------------------------------------------------------------------------------------------: |
+|      unit      |                                      单位，`String` 类型                                      |
+| unit-placement | 单位的位置，`String` 类型，可选值：`start`（在数字前） 或者 `end`（在数字后），默认为 `start` |
+
+#### slot
+
+| 名称 |      说明      |
+| :--: | :------------: |
+| unit | 自定义单位格式 |
+
+### SelectUnion
+
+联动选择输入框，在 Select 的基础上进行扩展，新增了一个属性：`group`。
+
+> 使用场景：多个输入框之间需要联动，已选中项不可再选。
+
+#### 使用
+
+```html
+<SelectUnion v-for="(item, key) in list" :key="key" v-model="value" :group="item.group">
+  <option value="a">A</option>
+  <option value="b">B</option>
+  <option value="c">C</option>
+</SelectUnion>
+```
+
+#### props
+
+| 属性  |                                       说明                                       |
+| :---: | :------------------------------------------------------------------------------: |
+| group | 分组名，`String` 类型，相同组名的 SelectUnion 之间有联动效果，默认为 `'default'` |
+
+### TableColumnKeyChain
+
+在 Table 的基础上进行扩展，可链式传入 _columns_ 中的 _key_。
+
+> 使用场景：要展示数据项中下层的属性，同时还需要生效 _tooltip_ 。
+
+#### 使用
+
+```html
+<TableColumnKeyChain :columns="columns" :data="tableData" border></TableColumnKeyChain>
+```
+
+```js
+export default {
+  data() {
+    return {
+      columns: [
+        {
+          title: 'name',
+          key: 'name'
+        },
+        {
+          title: 'age',
+          key: 'age'
+        },
+        {
+          title: 'addressName',
+          key: 'address.name', // 可以这样写
+          tooltip: true // tooltip 也会生效
+        },
+        {
+          title: 'date',
+          key: 'date',
+          tooltip: true
+        }
+      ],
+      tableData: [
+        {
+          name: 'John Brown',
+          age: 18,
+          address: {
+            name: 'New York No. 1 Lake Park'
+          },
+          date: '2016-10-03'
+        }
+      ]
+    }
+  }
+}
+```
+
+### TooltipText
+
+在 Tooltip 的基础上进行扩展，文本内容超出当前容器宽度时，自动开启 Tooltip 。
+
+#### 使用
+
+如果内容是纯文本，则默认将整个文本内容作为 Tooltip 的 _content_ 内容。
+
+```html
+<TooltipText>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</TooltipText>
+```
+
+如果内容非纯文本，用一个根容器包裹整个内容，同时需要单独指定 _content_ 。
+
+```html
+<TooltipText content="bbb">
+  <div>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa<span>bbbbbbb</span>aaaaaaaa</div>
+</TooltipText>
+```
 
 ## 指令
 
@@ -77,7 +204,7 @@ export default {
 
 ColorPicker 的优化指令，当 `opacity` 为 _0_ ，在颜色面板上选取颜色时，将不透明度置为 _1_ 。
 
-使用：
+#### 使用
 
 ```html
 <ColorPicker v-model="color" alpha v-modify-opacity />
@@ -89,11 +216,13 @@ ColorPicker 的优化指令，当 `opacity` 为 _0_ ，在颜色面板上选取�
 
 > 使用场景：echarts 图表的 _DOM_ 容器尺寸发生变化时，需要执行 `echarts.resize()` 重新调整图表尺寸。
 
-使用：
+#### 使用
 
 ```html
 <div v-resize:200.immediate="handleResize"></div>
 ```
+
+#### 配置
 
 |   属性    |                                                       说明                                                        |
 | :-------: | :---------------------------------------------------------------------------------------------------------------: |
@@ -107,7 +236,7 @@ ColorPicker 的优化指令，当 `opacity` 为 _0_ ，在颜色面板上选取�
 
 > 使用场景：列表项过多出现滚动条，新增一项时，将列表的滚动条滚动到底部，确保新增的一项可见。
 
-使用：
+#### 使用
 
 ```html
 <div
@@ -118,6 +247,8 @@ ColorPicker 的优化指令，当 `opacity` 为 _0_ ，在颜色面板上选取�
   }"
 ></div>
 ```
+
+#### 配置
 
 |   属性   |                                                    说明                                                     |
 | :------: | :---------------------------------------------------------------------------------------------------------: |
@@ -132,7 +263,7 @@ ColorPicker 的优化指令，当 `opacity` 为 _0_ ，在颜色面板上选取�
 
 > 使用场景：下拉列表的选项中，有些文字过长，开启文字省略后，还需要能展示全部文字。
 
-使用：
+#### 使用
 
 ```html
 <select v-model="model" style="width: 200px">
@@ -141,6 +272,8 @@ ColorPicker 的优化指令，当 `opacity` 为 _0_ ，在颜色面板上选取�
   </option>
 </select>
 ```
+
+#### 配置
 
 | 属性  |          说明           |
 | :---: | :---------------------: |

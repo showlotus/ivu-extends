@@ -1,6 +1,6 @@
 <template>
   <Tooltip
-    style="width: 100%; display: flex"
+    style="width: 100%"
     transfer
     :max-width="300"
     :disabled="!showTooltip"
@@ -17,7 +17,7 @@
 import { Tooltip } from 'view-design'
 
 export default {
-  name: 'IveTooltipText',
+  name: 'TooltipText',
   components: { Tooltip },
   props: {
     ...Tooltip.props,
@@ -42,7 +42,7 @@ export default {
   },
   methods: {
     handleTooltipIn() {
-      const $content = this.$refs.content.children[0]
+      const $content = this.$refs.content.children[0] || this.$refs.content
       let range = document.createRange()
       range.setStart($content, 0)
       range.setEnd($content, $content.childNodes.length)
@@ -56,8 +56,8 @@ export default {
 </script>
 
 <style scoped>
-.content {
-  display: flex;
+.content,
+:deep(.content > div) {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
