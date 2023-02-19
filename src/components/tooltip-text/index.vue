@@ -17,7 +17,7 @@
 import { Tooltip } from 'view-design'
 
 export default {
-  name: 'IVETooltipText',
+  name: 'IveTooltipText',
   components: { Tooltip },
   props: {
     ...Tooltip.props,

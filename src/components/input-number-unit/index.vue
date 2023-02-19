@@ -20,7 +20,7 @@ import { InputNumber } from 'view-design'
 const prefixCls = 'ive-input-number-unit'
 
 export default {
-  name: 'IVEInputNumberUnit',
+  name: 'IveInputNumberUnit',
   components: { InputNumber },
   props: {
     value: {

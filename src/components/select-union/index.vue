@@ -37,7 +37,7 @@ function isEmptyVal(val) {
 const name = 'ive-select-union'
 
 export default {
-  name: 'IVESelectUnion',
+  name: 'IveSelectUnion',
   components: { Select },
   props: {
     group: {
