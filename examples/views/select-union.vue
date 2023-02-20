@@ -8,7 +8,7 @@
         :key="key"
         v-model="formData[key]"
         clearable
-        :group="parseInt(key.slice(-1)) % 2"
+        :group="parseInt(key.slice(-1)) % 2 === 0 ? 'even' : 'odd'"
         :class="parseInt(key.slice(-1)) % 2 ? 'even' : 'odd'"
         @on-change="handleChange"
       >

@@ -1,6 +1,6 @@
 {
   "name": "ivu-extends",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "基于 view-design 扩展的组件库",
   "main": "dist/index.js",
   "files": [

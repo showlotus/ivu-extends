@@ -34,10 +34,10 @@ function isEmptyVal(val) {
   return val === '' || val == null
 }
 
-const name = 'ivu-select-union'
+const name = 'SelectUnion'
 
 export default {
-  name: 'SelectUnion',
+  name,
   components: { Select },
   props: {
     group: {
