@@ -1,16 +1,20 @@
 // import "view-design/dist/styles/iview.css"
+
 import '../dist/styles/iview.css'
 
 import App from './App.vue'
 import IvuExtends from '../dist/index.js'
-// import IvuExtends from '../src/index.js'
 import ViewUI from 'view-design/dist/iview.min'
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
+// import IvuExtends from '../src/index.js'
+
 Vue.use(ViewUI)
 Vue.use(IvuExtends)
 Vue.use(VueRouter)
+
+console.log(IvuExtends)
 
 Vue.config.productionTip = false
 
