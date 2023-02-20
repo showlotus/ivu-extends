@@ -1,17 +1,32 @@
 const path = require('path')
 const { VueLoaderPlugin } = require('vue-loader')
 const ProgressBarPlugin = require('progress-bar-webpack-plugin')
+const CompressionPlugin = require('compression-webpack-plugin')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 module.exports = {
   mode: 'production',
   entry: { main: './src/index.js' },
   output: {
+    publicPath: '/dist/',
     filename: 'index.js',
-    chunkFilename: '[id].js',
+    library: 'ivu-extends',
     libraryTarget: 'umd',
-    libraryExport: 'default'
+    libraryExport: 'default',
+    umdNamedDefine: true
   },
-  externals: /vue|view-design/,
+  externals: [
+    {
+      vue: {
+        root: 'Vue',
+        commonjs: 'vue',
+        commonjs2: 'vue',
+        amd: 'vue'
+      }
+    },
+    /view-design/
+  ],
   module: {
     rules: [
       {
@@ -38,10 +53,25 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.vue'],
+    extensions: ['.js', '.vue'],
     alias: {
       '@': path.resolve(__dirname, '../src')
     }
   },
-  plugins: [new ProgressBarPlugin(), new VueLoaderPlugin()]
+  plugins: [
+    new ProgressBarPlugin(),
+    new VueLoaderPlugin(),
+    new UglifyJsPlugin({
+      parallel: true,
+      sourceMap: true
+    }),
+    new CompressionPlugin({
+      asset: '[path].gz[query]',
+      algorithm: 'gzip',
+      test: /\.(js|css)$/,
+      threshold: 10240,
+      minRatio: 0.8
+    }),
+    new BundleAnalyzerPlugin()
+  ]
 }

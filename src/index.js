@@ -8,6 +8,7 @@ import modifyOpacity from '@/directives/modify-opacity.js'
 import resize from '@/directives/resize.js'
 import scrollTo from '@/directives/scroll-to.js'
 import setTitleAttr from '@/directives/set-title-attr.js'
+import { version } from '../package.json'
 
 const components = [FormLabelSuffix, InputNumberUnit, SelectUnion, TableColumnKeyChain, TooltipText]
 const directives = [modifyOpacity, resize, scrollTo, setTitleAttr]
@@ -38,7 +39,7 @@ export {
 }
 
 export default {
-  version: '1.0.0',
+  version,
   install,
   FormLabelSuffix,
   genThemeColor,
