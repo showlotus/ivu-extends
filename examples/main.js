@@ -1,6 +1,6 @@
 // import "view-design/dist/styles/iview.css"
 
-import '../dist/styles/iview.css'
+import '../public/styles/iview.css'
 
 import App from './App.vue'
 import IvuExtends from '../dist/index.js'

@@ -4,6 +4,7 @@ const ProgressBarPlugin = require('progress-bar-webpack-plugin')
 const CompressionPlugin = require('compression-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
   mode: 'production',
@@ -72,6 +73,9 @@ module.exports = {
       threshold: 10240,
       minRatio: 0.8
     }),
-    new BundleAnalyzerPlugin()
+    new BundleAnalyzerPlugin(),
+    new CopyWebpackPlugin({
+      patterns: [{ from: 'public' }]
+    })
   ]
 }
