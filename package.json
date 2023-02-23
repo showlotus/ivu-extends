@@ -1,6 +1,6 @@
 {
   "name": "ivu-extends",
-  "version": "0.0.14",
+  "version": "0.1.0",
   "description": "基于 view-design 扩展的组件库",
   "main": "dist/index.js",
   "files": [
@@ -38,6 +38,7 @@
     "@babel/core": "^7.12.16",
     "@babel/eslint-parser": "^7.12.16",
     "@babel/preset-env": "^7.20.2",
+    "@less/root": "git+https://github.com/showlotus/less.js.git",
     "autoprefixer-loader": "^3.2.0",
     "babel-loader": "^8.3.0",
     "babel-plugin-import": "^1.13.6",
